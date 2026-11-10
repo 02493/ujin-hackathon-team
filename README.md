@@ -1,100 +1,61 @@
-# Ujin Smart Home — Редактор сценариев
+# Ujin Smart Home — Android Client (Hackathon Project)
 
-Инструмент для создания автоматизаций умного дома на базе платформы **Ujin OS**.  
-Позволяет описывать устройства, настраивать правила взаимодействия и тестировать сценарии на эмуляторах — без реального оборудования.
+Мобильное приложение для управления устройствами и сценариями умного дома на базе платформы **Ujin OS**, разработанное в рамках хакатона.
 
-## Демо-сценарий
+Данный репозиторий представляет собой форк командного проекта [Ujin Smart Home](https://github.com/02493/ujin-hackathon-team), сфокусированный на **Android-части** (моя зона ответственности в команде). Проект был модернизирован и адаптирован для независимой демонстрации в портфолио.
 
-```
-Датчик протечки → обнаружена вода
-       ↓
-  Шлагбаум → открыть (для аварийных служб)
-```
+---
 
-## Стек технологий
+##  Особенности хакатона и Mock-режим
 
-| Слой | Технологии |
-|------|-----------|
-| Frontend | React, TypeScript, Vite, Zustand, React Flow, Tailwind CSS |
-| Backend | FastAPI (Python), SQLite |
-| Эмуляторы | Python, WebSocket, HTTP |
-| Интеграция | Ujin OS REST API, WebSocket |
+> **Важно:** Серверный REST API и стенды Ujin OS, предоставленные организаторами на время хакатона, в настоящее время **недоступны**.  
+> 
+> Чтобы приложение можно было полноценно собрать, запустить и протестировать в любой момент без развертывания локального бэкенда и эмуляторов, мобильный клиент переведен на **Mock-режим** (встроенные статические сценарии и эмуляция откликов устройств).
 
-## Быстрый старт
+---
 
-### Frontend
-```bash
-npm install
-npm run dev
-Открой [http://localhost:5173](http://localhost:5173).
-```
+## Основные возможности
 
-### Backend
-```bash
-cd backend/device-api
-pip install -r requirements.txt   
-uvicorn backend.main:app --reload
-```
+- **Мониторинг устройств:** отображение статусов датчиков протечки, термостатов, освещения, шлагбаумов и запорной арматуры.
+- **Управление сценариями автоматизации:** запуск правил взаимодействия (например: *Датчик протечки → обнаружена вода → аварийное закрытие арматуры*).
+- **Автономная работа:** симуляция работы оборудования без внешних зависимостей.
 
-### Эмуляторы устройств
-```bash
-cd emulators
-python main.py
-```
+---
 
-## Структура проекта
+## 📸 Скриншоты
 
-```
-├── src/                    # React frontend
-│   ├── api/                # Ujin OS API client
-│   ├── components/         # DeviceBuilder, ScenarioEditor, nodes
-│   ├── pages/              # Dashboard, Login, ScenarioEditor
-│   ├── store/              # Zustand state (devices, scenarios, logs)
-│   └── types/              # TypeScript types
-├── backend/
-│   └── device-api/
-│       ├── backend/        # FastAPI app
-│       └── emulators/      # Device emulator library
-│           └── devices/    # leak, valve, barrier, thermostat, light…
-├── emulators/              # Standalone emulator runner
-└── ROADMAP.md
-```
+| Список устройств | Запуск сценария | Детали устройства |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/devices.png" width="220" /> | <img src="docs/screenshots/scenario.png" width="220" /> | <img src="docs/screenshots/details.png" width="220" /> |
 
-## Демо
+---
 
-_(ссылка на видео будет здесь)_
+## 🛠 Стек технологий (Android)
 
-## Команда
+| Категория | Технологии и компоненты |
+| --- | --- |
+| **Язык разработки** | Kotlin (Coroutines, StateFlow, SharedFlow) |
+| **UI Framework & Дизайн** | Jetpack Compose, Material 3 |
+| **Архитектурный подход** | MVVM |
+| **Навигация** | Jetpack Navigation Compose |
+| **Сетевой слой** | Retrofit 2, OkHttp |
+| **Слой данных (Data)** | Переключение между `RemoteSmartHomeRepository` и `MockSmartHomeRepository`|
+| **Система сборки** | Gradle (Kotlin DSL) |
 
-- [Елена] — Frontend Developer
-- [Анастасия] — Backend Developer
-- [Екатерина] — Дизайнер, аналитик и презентация
-- [Андрей] — Мобильная разработка
-- [Екатерина] — Backend Developer 2
+---
 
-## Быстрый старт
+## 👥 Роль в команде хакатона
 
-Для запуска вам понадобятся **два окна терминала** (или две вкладки в VS Code).
+Оригинальный проект разрабатывался межфункциональной командой:
+- **Андрей (Я)** — Мобильная разработка (Android-клиент)
+- **Frontend:** Елена (React, TypeScript, Zustand, React Flow)
+- **Backend & Эмуляторы:** Анастасия, Екатерина (FastAPI, Python, SQLite)
+- **Дизайн & Аналитика:** Екатерина
 
-### 1. Запуск Бэкенда (FastAPI)
-Откройте первый терминал и перейдите в папку бэкенда:
+---
 
-```bash
-cd backend/device-api
-pip install -r requirements.txt   
-cp .env.example .env
-ЗАПУСК СЕРВЕРА (Специальная команда):
-Из-за особенностей путей в Windows стандартная команда uvicorn backend.main:app --reload может выдать ошибку ModuleNotFoundError. Используйте эту проверенную команду, которая принудительно добавляет нужные папки в пути поиска Python:
+## 🚀 Сборка и запуск Android-приложения
 
-bash
-py -c "import sys; sys.path.append('backend'); import uvicorn; uvicorn.run('backend.main:app', port=8001)"
-Признак успеха: В консоли появится INFO: Application startup complete и Uvicorn running on http://0.0.0.0:8001.
-(Ошибки API returned error object: 404 про Ujin — это нормально, бэкенд работает в локальном режиме Ujin=off).
-
-2. Запуск Веб-интерфейса (Frontend)
-Не закрывая первый терминал, откройте второй терминал в корне проекта:
-
-bash
-npm install --legacy-peer-deps
-npm run dev
-Откройте в браузере http://localhost:5173.
+1. Клонируйте репозиторий:
+   ```bash
+   git clone [https://github.com/02493/ujin-hackathon-team.git](https://github.com/02493/ujin-hackathon-team.git)
