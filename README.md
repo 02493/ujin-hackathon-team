@@ -58,7 +58,7 @@
 ## Роль в команде хакатона
 
 Оригинальный проект разрабатывался межфункциональной командой:
-- **Mobile** — Андрей (Kotlin) 
+- **Mobile:** [Андрей (Kotlin)](https://02493.github.io/portfolio/)
 - **Frontend:** Елена (React, TypeScript, Zustand, React Flow)
 - **Backend & Эмуляторы:** Анастасия, Екатерина (FastAPI, Python, SQLite)
 - **Дизайн & Аналитика:** Екатерина (Figma)
