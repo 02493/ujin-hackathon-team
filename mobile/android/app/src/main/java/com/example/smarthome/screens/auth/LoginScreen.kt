@@ -3,14 +3,35 @@ package com.example.smarthome.screens.auth
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
@@ -19,6 +40,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.smarthome.R
@@ -37,19 +59,11 @@ fun LoginScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
-            .padding(24.dp)
+            .statusBarsPadding()
+            .navigationBarsPadding()
+            .padding(horizontal = 24.dp)
+            .padding(bottom = 24.dp)
     ) {
-        IconButton(
-            onClick = onBackClick,
-            modifier = Modifier.padding(top = 24.dp)
-        ) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                contentDescription = "Назад",
-                tint = UjinDarkGray
-            )
-        }
-
         Spacer(modifier = Modifier.height(48.dp))
 
         Image(
@@ -60,9 +74,9 @@ fun LoginScreen(
                 .width(180.dp)
                 .wrapContentHeight()
                 .scale(2f)
-)
+        )
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(40.dp))
 
         Text(
             text = "Введите номер телефона",
@@ -78,7 +92,6 @@ fun LoginScreen(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Префикс +7
             Box(
                 modifier = Modifier
                     .width(56.dp)
@@ -88,10 +101,9 @@ fun LoginScreen(
             ) {
                 Text("+7", color = Color.Gray)
             }
-            
+
             Spacer(modifier = Modifier.width(8.dp))
 
-            // поле
             Box(
                 modifier = Modifier
                     .weight(1f)
@@ -117,7 +129,7 @@ fun LoginScreen(
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // Галочка согласия
+        // Согласие
         Row(verticalAlignment = Alignment.Top) {
             Checkbox(
                 checked = isAgreed,
@@ -134,11 +146,12 @@ fun LoginScreen(
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // Кнопка
         Button(
             onClick = onCodeSent,
             enabled = isAgreed && phoneNumber.isNotEmpty(),
-            modifier = Modifier.fillMaxWidth().height(56.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp),
             colors = ButtonDefaults.buttonColors(containerColor = UjinDarkGray),
             shape = RoundedCornerShape(12.dp)
         ) {
@@ -147,7 +160,7 @@ fun LoginScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Текстовая кнопка назад
+        // Текстовая кнопка возврата снизу
         Row(
             modifier = Modifier
                 .clickable { onBackClick() }

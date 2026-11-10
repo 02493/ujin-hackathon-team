@@ -24,9 +24,20 @@
 
 ## 📸 Скриншоты
 
-| Список устройств | Запуск сценария | Детали устройства |
-| :---: | :---: | :---: |
-| <img src="docs/screenshots/devices.png" width="220" /> | <img src="docs/screenshots/scenario.png" width="220" /> | <img src="docs/screenshots/details.png" width="220" /> |
+###  Авторизация и вход
+<p align="center">
+  <img src="screens/start-screen.jpg" width="850" alt="Стартовый экран и авторизация" />
+</p>
+
+###  Сценарии и устройства
+<p align="center">
+  <img src="screens/scene-screen.jpg" width="850" alt="Сценарии и управление" />
+</p>
+
+###  Тёмная тема
+<p align="center">
+  <img src="screens/dark-screen.jpg" width="850" alt="Тёмная тема оформления" />
+</p>
 
 ---
 
