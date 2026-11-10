@@ -67,6 +67,25 @@
 
 ## Сборка и запуск Android-приложения
 
-1. Клонируйте репозиторий:
-   ```bash
-   git clone [https://github.com/02493/ujin-hackathon-team.git](https://github.com/02493/ujin-hackathon-team.git)
+### Запуск через Android Studio
+1. Клонируйте репозиторий
+2. Откройте проект в Android Studio.
+3. Дождитесь окончания синхронизации Gradle.
+4. Выберите эмулятор или подключенное устройство и нажмите **Run ( ▶ )**.
+
+### Сборка через терминал (Gradle Wrapper)
+* Собрать Debug APK:
+  * Linux/macOS: `./gradlew assembleDebug`
+  * Windows: `gradlew.bat assembleDebug`
+* Установить на устройство: `./gradlew installDebug`
+
+### Скачать приложение
+
+Вы можете скачать актуальную версию Android-приложения (`.apk`) прямо из репозитория:
+
+<a href="https://github.com/02493/ujin-hackathon-team/raw/main/release/smart-home.apk">
+  <img src="https://img.shields.io/badge/Скачать_APK-Android-brightgreen?style=for-the-badge&logo=android" alt="Download APK">
+</a>
+
+Или по прямой текстовой ссылке:  
+👉 [Скачать smart-home.apk](https://github.com/02493/ujin-hackathon-team/raw/main/release/smart-home.apk)
