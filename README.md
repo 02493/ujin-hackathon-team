@@ -89,3 +89,9 @@
 
 Или по прямой текстовой ссылке:  
 👉 [Скачать smart-home.apk](https://github.com/02493/ujin-hackathon-team/raw/main/release/smart-home.apk)
+
+---
+
+## Другие работы
+
+[Мобильная разработка.](https://02493.github.io/portfolio/)
